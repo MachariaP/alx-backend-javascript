@@ -1,6 +1,6 @@
 /**
  * This function fetches a list of students.
- * 
+ *
  * @returns {Array<Object>} An array containing student information as objects.
  *  - Each object has the following properties:
  *      - `id` (number): The unique identifier for the student.
