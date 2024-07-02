@@ -6,7 +6,7 @@
  *      - `id` (number): The unique identifier for the student.
  *      - `firstName` (string): The student's first name.
  *      - `location` (string): The student's location (city, state, etc.).
- *  
+ *
  * @author Phinehas Macharia <https://github.com/MachariaP>
  */
 
@@ -16,16 +16,16 @@ const getListStudents = () => [
     firstName: 'Guillaume',
     location: 'San Francisco',
   },
-    {
+  {
     id: 2,
     firstName: 'James',
     location: 'Columbia',
-  }, 
-    {
+  },
+  {
     id: 5,
     firstName: 'Serena',
     location: 'San Francisco',
-  }, 
+  },
 
 ];
 
