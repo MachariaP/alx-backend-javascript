@@ -29,6 +29,23 @@ interface Teacher {
     location: "New York",
     contract: "Permanent" // Example of an additional property
   };
+
+  // Extend the Teacher interface to include Directors with an additional attribute
+interface Directors extends Teacher {
+    numberOfReports: number;
+  }
   
+  // Example usage of the Directors interface
+  const director1: Directors = {
+    firstName: 'John',
+    lastName: 'Doe',
+    location: 'London',
+    fullTimeEmployee: true,
+    numberOfReports: 17,
+  };
+    
   // Log the teacher object to the console
   console.log(teacher);
+
+  // Log the director object to the console
+  console.log(director1);
