@@ -49,3 +49,16 @@ interface Directors extends Teacher {
 
   // Log the director object to the console
   console.log(director1);
+
+  // Define the interface for the printTeacher function
+interface printTeacherFunction {
+    (firstName: string, lastName: string): string;
+  }
+  
+  // Implement the printTeacher function
+  const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
+    return `${firstName.charAt(0)}. ${lastName}`;
+  };
+  
+  // Example usage
+  console.log(printTeacher("John", "Doe")); // Output: J. Doe
