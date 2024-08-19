@@ -1,11 +1,15 @@
-/**
- * This script reads from stdin and writes to stdout.
- * Displays a message when the progam ends.
- */
+// A programme that will be executed through command line
+
 process.stdout.write('Welcome to Holberton School, what is your name?\n');
-process.stdin.on('data', (data) => {
-	const name = data.toString().trim();
-	process.stdout.write(`Your name is: ${name}\n`);
-	process.stdout.write('This important software is now closing\n');
-	process.exit();
+
+process.stdin.on('readable', () => {
+  const chunk = process.stdin.read();
+
+  if (chunk) {
+    process.stdout.write(`Your name is: ${chunk}`);
+  }
+});
+
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
 });
