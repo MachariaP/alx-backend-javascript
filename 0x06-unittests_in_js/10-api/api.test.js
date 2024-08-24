@@ -35,7 +35,7 @@ describe('API integration test', () => {
   });
 
   it('POST /login returns valid response', (done) => {
-    request.post(`${API_URL}/login`, {json: {userName: 'Pinkbrook'}}, (_err, res, body) => {
+    request.post(`${API_URL}/login`, { json: { userName: 'Pinkbrook' } }, (_err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
       expect(body).to.be.equal('Welcome Pinkbrook');
       done();
@@ -45,55 +45,39 @@ describe('API integration test', () => {
   it('GET /available_payments returns valid response', (done) => {
     request.get(`${API_URL}/available_payments`, (_err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
-      expect(JSON.parse(body))
-        .to.be.deep.equal({payment_methods: {credit_cards: true, paypal: false}});
+      expect(JSON.parse(body)).to.be.deep.equal({
+        payment_methods: { credit_cards: true, paypal: false }
+      });
       done();
     });
   });
 
-  describe('GET /available_payments', () => {
-    it('should return the correct payment methods object', (done) => {
-      request(app)
-        .get('/available_payments')
-        .expect(200)
-        .end((err, res) => {
-          if (err) return done(err);
-          expect(res.body).to.deep.equal({
-            payment_methods: {
-              credit_cards: true,
-              paypal: false
-            }
-          });
-          done();
-        });
+  it('GET /available_payments should return the correct payment methods object', (done) => {
+    request.get(`${API_URL}/available_payments`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(JSON.parse(body)).to.deep.equal({
+        payment_methods: {
+          credit_cards: true,
+          paypal: false
+        }
+      });
+      done();
     });
   });
 
-  describe('POST /login', () => {
-    it('should return a welcome message with the provided username', (done) => {
-      request(app)
-        .post('/login')
-        .send({ userName: 'Betty' })
-        .set('Content-Type', 'application/json')
-        .expect(200)
-        .end((err, res) => {
-          if (err) return done(err);
-          expect(res.text).to.equal('Welcome Betty');
-          done();
-        });
+  it('POST /login should return a welcome message with the provided username', (done) => {
+    request.post(`${API_URL}/login`, { json: { userName: 'Betty' } }, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome Betty');
+      done();
     });
+  });
 
-    it('should return a welcome message with "Unknown" if no username is provided', (done) => {
-      request(app)
-        .post('/login')
-        .send({})
-        .set('Content-Type', 'application/json')
-        .expect(200)
-        .end((err, res) => {
-          if (err) return done(err);
-          expect(res.text).to.equal('Welcome Unknown');
-          done();
-        });
+  it('POST /login should return a welcome message with "Unknown" if no username is provided', (done) => {
+    request.post(`${API_URL}/login`, { json: {} }, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome Unknown');
+      done();
     });
   });
 });
